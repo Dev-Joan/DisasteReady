@@ -1,0 +1,146 @@
+[
+  {
+    "userId": "u_1783458338044",
+    "username": "testuser",
+    "password": "$2b$10$iP/r0Csrvv31DmAJAsCm.uTpy01JEgUFm.CtnQLwUDC/v3zKB9dMu",
+    "name": "Jeanne",
+    "age": 22,
+    "region": "UK",
+    "accessibilityFlags": [],
+    "experienceMode": "adult",
+    "relevantHazards": [
+      "flood",
+      "severe_weather"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  },
+  {
+    "userId": "u_1783463533672",
+    "username": "jeanne tannous",
+    "password": "$2b$10$iodtKGkWXAr5/noVz/nISue2RTao.1tiU5a2Hke8yUjAq0yh3VM0y",
+    "name": "Janne",
+    "age": 25,
+    "region": "Uk",
+    "accessibilityFlags": [],
+    "experienceMode": "adult",
+    "relevantHazards": [
+      "earthquake",
+      "flood"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  },
+  {
+    "userId": "u_1785342026573",
+    "username": "jeanne ",
+    "password": "$2b$10$zNeiqJb/Pe58cp9BfFK8FuPcFp5jeFpe/KuaVTcWHar2ttzHj8HVe"
+  },
+  {
+    "userId": "u_1785342073177",
+    "username": "tannousjeanne21@gmail.com",
+    "password": "$2b$10$2rNQ/g7uwAwwAMeQ4Unft.i5vv76bjp7hHG5Wl1oFpyY1inxU/g4.",
+    "name": "Jeanne",
+    "age": 25,
+    "region": "Uk",
+    "accessibilityFlags": [],
+    "experienceMode": "adult",
+    "relevantHazards": [
+      "earthquake",
+      "flood"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  },
+  {
+    "userId": "u_1785420554968",
+    "username": "Tannousjeanne21@gmail.com",
+    "password": "$2b$10$pr7s6cJTCK0C/uy9akvVJOcnJHHUq9Dd.gs6UM0vWWbzoAelBZqii",
+    "name": "Jeanne tannous",
+    "age": 25,
+    "region": "Other",
+    "accessibilityFlags": [],
+    "experienceMode": "adult",
+    "relevantHazards": [
+      "earthquake",
+      "flood"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  },
+  {
+    "userId": "u_1785423008442",
+    "username": "helloitsme@gmail.com",
+    "password": "$2b$10$v923n.2zw1nLdv0zHsPDeesymrLvGjl07gBveDBd5uyMdPf3v2tiK",
+    "name": "Jeanne",
+    "age": 10,
+    "region": "MEA",
+    "country": "Lebanon",
+    "accessibilityFlags": [],
+    "experienceMode": "child",
+    "relevantHazards": [
+      "earthquake",
+      "flood",
+      "wildfire"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  },
+  {
+    "userId": "u_1785424376017",
+    "username": "hibitchhowareyou@gmail.com",
+    "password": "$2b$10$sYTndNg6oXNalUae3qBr2.i7sIQIUxFEpqqL0HCmvB9eqXZxUN7F6",
+    "name": "Jeanne",
+    "age": 6,
+    "region": "MEA",
+    "country": "Lebanon",
+    "accessibilityFlags": [],
+    "experienceMode": "child",
+    "relevantHazards": [
+      "earthquake",
+      "flood",
+      "wildfire"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  },
+  {
+    "userId": "u_1785494269297",
+    "username": "jeanne.tannous@gmail.com",
+    "password": "$2b$10$FTNMegxo6hLU3M/0KGfzNejzfSuqLmttIYnu09gcUgj9lngsMN/8O",
+    "name": "Jeanne",
+    "age": 6,
+    "region": "MEA",
+    "country": "Lebanon",
+    "accessibilityFlags": [],
+    "experienceMode": "child",
+    "relevantHazards": [
+      "earthquake",
+      "flood",
+      "wildfire"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  }
+]
