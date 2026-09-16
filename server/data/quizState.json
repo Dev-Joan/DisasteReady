@@ -37,5 +37,24 @@
       "currentDifficulty": 1,
       "mastered": false
     }
+  },
+  "u_1789555763175": {
+    "flood": {
+      "history": [],
+      "currentDifficulty": 1,
+      "mastered": false
+    },
+    "earthquake": {
+      "history": [],
+      "currentDifficulty": 1,
+      "mastered": false
+    }
+  },
+  "u_1789559046390": {
+    "earthquake": {
+      "history": [],
+      "currentDifficulty": 1,
+      "mastered": false
+    }
   }
 }

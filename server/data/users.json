@@ -163,5 +163,47 @@
       "largerTouchTargets": false,
       "simplifiedNavigation": false
     }
+  },
+  {
+    "userId": "u_1789555763175",
+    "username": "jdt11@gmail.com",
+    "password": "$2a$10$Lp8Cmwe41v9zY5ffSjnYDOEvCkn5su6eFZt5yD6KyP0F2m/r2PSNm",
+    "name": "Jeanne",
+    "age": 15,
+    "region": "MEA",
+    "country": "Lebanon",
+    "accessibilityFlags": [],
+    "experienceMode": "teen",
+    "relevantHazards": [
+      "earthquake",
+      "flood",
+      "wildfire"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
+  },
+  {
+    "userId": "u_1789559046390",
+    "username": "jeannedarx@gmail.com",
+    "password": "$2a$10$04kC96ywdKUjRuyCxy7C..Q4gSPfoBFY7cx4L0BbNQ0rFJgftzGGi",
+    "name": "Jeanne",
+    "age": 30,
+    "region": "MEA",
+    "country": "Lebanon",
+    "accessibilityFlags": [],
+    "experienceMode": "adult",
+    "relevantHazards": [
+      "earthquake",
+      "flood",
+      "wildfire"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
   }
 ]

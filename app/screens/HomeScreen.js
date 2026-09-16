@@ -169,6 +169,9 @@ export default function HomeScreen({ navigation }) {
         <TouchableOpacity style={[styles.teenCard, { borderColor: '#0EA5E9' }]} onPress={() => navigation.navigate('KitBuilder', { hazard: 'flood' })}>
           <Text style={styles.teenCardText}>🎒 Kit Builder Challenge</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={[styles.teenCard, { borderColor: '#D32F2F' }]} onPress={() => navigation.navigate('FirstAid')}>
+          <Text style={styles.teenCardText}>🚑 First Aid Guides</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={[styles.teenCard, { borderColor: '#4F46E5' }]} onPress={() => navigation.navigate('Leaderboard')}>
           <Text style={styles.teenCardText}>🏆 Leaderboard</Text>
         </TouchableOpacity>
@@ -184,39 +187,97 @@ export default function HomeScreen({ navigation }) {
 
   if (mode === 'elderly') {
     return (
-      <ScrollView style={{ backgroundColor: '#F8FAFC' }} contentContainerStyle={styles.container}
+      <ScrollView style={{ backgroundColor: '#F1F5F9' }} contentContainerStyle={styles.container}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         <AlertBanner />
         <Text style={styles.seniorGreeting}>Good day,</Text>
-        <Text style={styles.seniorName}>{profile.name || username} 👋</Text>
+        <Text style={styles.seniorName}>{profile.name || username}</Text>
         <View style={styles.seniorScoreCard}>
           <Text style={styles.seniorScoreLabel}>Your progress</Text>
           <Text style={styles.seniorScoreText}>{gamification.points} points · {gamification.rank}</Text>
-          <Text style={styles.seniorStreakText}>🌟 {gamification.currentStreak}-day learning streak</Text>
+          <Text style={styles.seniorStreakText}>{gamification.currentStreak}-day learning streak</Text>
         </View>
-        <TouchableOpacity style={[styles.seniorButton, { backgroundColor: '#1E3A8A' }]} onPress={() => navigation.navigate('Resources')}><Text style={styles.seniorButtonText}>📰 Read Articles</Text></TouchableOpacity>
-        <TouchableOpacity style={[styles.seniorButton, { backgroundColor: '#059669' }]} onPress={() => navigation.navigate('AudioPlayer')}><Text style={styles.seniorButtonText}>🎧 Listen & Learn</Text></TouchableOpacity>
-        <TouchableOpacity style={[styles.seniorButton, { backgroundColor: '#059669' }]} onPress={() => navigation.navigate('Quiz')}><Text style={styles.seniorButtonText}>🧠 Daily Quiz</Text></TouchableOpacity>
-        <TouchableOpacity style={[styles.seniorButton, { backgroundColor: '#1E3A8A' }]} onPress={() => navigation.navigate('Chatbot')}><Text style={styles.seniorButtonText}>💬 Ask a Question</Text></TouchableOpacity>
-        <TouchableOpacity style={[styles.seniorButton, { backgroundColor: '#D97706' }]} onPress={() => navigation.navigate('Alerts')}><Text style={styles.seniorButtonText}>🚨 Alerts Near You</Text></TouchableOpacity>
+
+        <TouchableOpacity style={[styles.seniorButton, styles.seniorEmergency]} onPress={() => navigation.navigate('FirstAid')}>
+          <View style={[styles.seniorStripe, { backgroundColor: '#fff' }]} />
+          <Text style={styles.seniorEmergencyText}>🚑 First Aid Guides</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.seniorButton} onPress={() => navigation.navigate('Resources')}>
+          <View style={[styles.seniorStripe, { backgroundColor: '#60A5FA' }]} />
+          <Text style={styles.seniorButtonText}>📰 Read Articles</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.seniorButton} onPress={() => navigation.navigate('AudioPlayer')}>
+          <View style={[styles.seniorStripe, { backgroundColor: '#34D399' }]} />
+          <Text style={styles.seniorButtonText}>🎧 Listen & Learn</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.seniorButton} onPress={() => navigation.navigate('Quiz')}>
+          <View style={[styles.seniorStripe, { backgroundColor: '#A78BFA' }]} />
+          <Text style={styles.seniorButtonText}>🧠 Daily Quiz</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.seniorButton} onPress={() => navigation.navigate('Chatbot')}>
+          <View style={[styles.seniorStripe, { backgroundColor: '#38BDF8' }]} />
+          <Text style={styles.seniorButtonText}>💬 Ask a Question</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.seniorButton} onPress={() => navigation.navigate('Alerts')}>
+          <View style={[styles.seniorStripe, { backgroundColor: '#F59E0B' }]} />
+          <Text style={styles.seniorButtonText}>🚨 Alerts Near You</Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
 
   return (
-    <ScrollView style={{ backgroundColor: '#F8FAFC' }} contentContainerStyle={styles.container}
+    <ScrollView style={{ backgroundColor: '#F1F5F9' }} contentContainerStyle={styles.container}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <AlertBanner />
       <Text style={styles.adultGreeting}>{profile.name || username}</Text>
       <Text style={styles.adultSub}>{gamification.rank} · {gamification.points} XP · {gamification.currentStreak}-day streak</Text>
-      <Text style={styles.adultSectionTitle}>⚡ Your Preparedness</Text>
-      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#D97706' }]} onPress={() => navigation.navigate('Tasks')}><Text style={styles.adultCardTitle}>Daily Tasks</Text><Text style={styles.adultCardSub}>Complete today's preparedness action</Text></TouchableOpacity>
-      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#1E3A8A' }]} onPress={() => navigation.navigate('Quiz')}><Text style={styles.adultCardTitle}>Adaptive Quiz</Text><Text style={styles.adultCardSub}>Scenario-based questions for your hazards: {(profile.relevantHazards || []).join(', ')}</Text></TouchableOpacity>
-      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#059669' }]} onPress={() => navigation.navigate('KitBuilder', { hazard: 'flood' })}><Text style={styles.adultCardTitle}>Emergency Kit Builder</Text><Text style={styles.adultCardSub}>Build and check your household kit</Text></TouchableOpacity>
-      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#1E3A8A' }]} onPress={() => navigation.navigate('Resources')}><Text style={styles.adultCardTitle}>Resource Hub</Text><Text style={styles.adultCardSub}>Guides and videos from official sources</Text></TouchableOpacity>
-      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#D32F2F' }]} onPress={() => navigation.navigate('Alerts')}><Text style={styles.adultCardTitle}>Live Alerts</Text><Text style={styles.adultCardSub}>{hasActiveAlert ? `${alerts.length} active alert(s) in your area` : 'No active alerts in your area'}</Text></TouchableOpacity>
-      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#059669' }]} onPress={() => navigation.navigate('Chatbot')}><Text style={styles.adultCardTitle}>Preparedness Assistant</Text><Text style={styles.adultCardSub}>Ask disaster-preparedness questions</Text></TouchableOpacity>
-      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#4F46E5' }]} onPress={() => navigation.navigate('Leaderboard')}><Text style={styles.adultCardTitle}>Leaderboard</Text><Text style={styles.adultCardSub}>See how you rank</Text></TouchableOpacity>
+      <Text style={styles.adultSectionTitle}>Your Preparedness</Text>
+
+      <TouchableOpacity style={[styles.adultCard, styles.adultCardEmergency]} onPress={() => navigation.navigate('FirstAid')}>
+        <Text style={styles.adultCardTitleEmergency}>First Aid Guides</Text>
+        <Text style={styles.adultCardSubEmergency}>CPR, burns, bleeding, and disaster response</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#1E3A8A' }]} onPress={() => navigation.navigate('Tasks')}>
+        <Text style={styles.adultCardTitle}>Daily Tasks</Text>
+        <Text style={styles.adultCardSub}>Complete today's preparedness action</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#1E3A8A' }]} onPress={() => navigation.navigate('Quiz')}>
+        <Text style={styles.adultCardTitle}>Adaptive Quiz</Text>
+        <Text style={styles.adultCardSub}>Scenario-based questions for your hazards: {(profile.relevantHazards || []).join(', ')}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#334155' }]} onPress={() => navigation.navigate('KitBuilder', { hazard: 'flood' })}>
+        <Text style={styles.adultCardTitle}>Emergency Kit Builder</Text>
+        <Text style={styles.adultCardSub}>Build and check your household kit</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#334155' }]} onPress={() => navigation.navigate('Resources')}>
+        <Text style={styles.adultCardTitle}>Resource Hub</Text>
+        <Text style={styles.adultCardSub}>Guides and videos from official sources</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#1E3A8A' }]} onPress={() => navigation.navigate('Alerts')}>
+        <Text style={styles.adultCardTitle}>Live Alerts</Text>
+        <Text style={styles.adultCardSub}>{hasActiveAlert ? `${alerts.length} active alert(s) in your area` : 'No active alerts in your area'}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#334155' }]} onPress={() => navigation.navigate('Chatbot')}>
+        <Text style={styles.adultCardTitle}>Preparedness Assistant</Text>
+        <Text style={styles.adultCardSub}>Ask disaster-preparedness questions</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.adultCard, { borderLeftColor: '#334155' }]} onPress={() => navigation.navigate('Leaderboard')}>
+        <Text style={styles.adultCardTitle}>Leaderboard</Text>
+        <Text style={styles.adultCardSub}>See how you rank</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -280,18 +341,26 @@ const styles = StyleSheet.create({
   teenCtaSub: { fontSize: 13, color: '#FFE1E1', marginTop: 4 },
   teenCard: { backgroundColor: '#1E293B', borderRadius: 14, borderWidth: 1, padding: 18, marginBottom: 12 },
   teenCardText: { fontSize: 16, fontWeight: 'bold', color: '#F8FAFC' },
+
   seniorGreeting: { fontSize: 22, color: '#475569' },
   seniorName: { fontSize: 32, fontWeight: 'bold', color: '#1E293B', marginBottom: 16 },
-  seniorScoreCard: { backgroundColor: '#E8F0FE', borderRadius: 16, padding: 20, marginBottom: 20 },
-  seniorScoreLabel: { fontSize: 16, color: '#475569' },
-  seniorScoreText: { fontSize: 22, fontWeight: 'bold', color: '#1E3A8A', marginVertical: 6 },
-  seniorStreakText: { fontSize: 16, color: '#059669' },
-  seniorButton: { borderRadius: 14, padding: 22, marginBottom: 14, alignItems: 'center' },
-  seniorButtonText: { fontSize: 20, fontWeight: 'bold', color: '#fff' },
+  seniorScoreCard: { backgroundColor: '#1E3A8A', borderRadius: 16, padding: 20, marginBottom: 20 },
+  seniorScoreLabel: { fontSize: 15, color: '#BFDBFE' },
+  seniorScoreText: { fontSize: 22, fontWeight: 'bold', color: '#fff', marginVertical: 6 },
+  seniorStreakText: { fontSize: 15, color: '#BFDBFE' },
+  seniorButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#1E3A8A', borderRadius: 14, paddingVertical: 22, paddingHorizontal: 18, marginBottom: 14, overflow: 'hidden' },
+  seniorStripe: { width: 5, height: '100%', borderRadius: 3, marginRight: 14, position: 'absolute', left: 0, top: 0, bottom: 0 },
+  seniorButtonText: { fontSize: 20, fontWeight: 'bold', color: '#fff', marginLeft: 10 },
+  seniorEmergency: { backgroundColor: '#D32F2F' },
+  seniorEmergencyText: { fontSize: 20, fontWeight: 'bold', color: '#fff', marginLeft: 10 },
+
   adultGreeting: { fontSize: 24, fontWeight: 'bold', color: '#1E293B' },
   adultSub: { fontSize: 13, color: '#64748B', marginBottom: 20 },
   adultSectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#1E293B', marginBottom: 12 },
   adultCard: { backgroundColor: '#fff', borderRadius: 12, borderLeftWidth: 4, padding: 16, marginBottom: 12, shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 4, elevation: 2 },
   adultCardTitle: { fontSize: 16, fontWeight: 'bold', color: '#1E293B' },
-  adultCardSub: { fontSize: 13, color: '#64748B', marginTop: 4 }
+  adultCardSub: { fontSize: 13, color: '#64748B', marginTop: 4 },
+  adultCardEmergency: { backgroundColor: '#FEF2F2', borderLeftColor: '#D32F2F' },
+  adultCardTitleEmergency: { fontSize: 16, fontWeight: 'bold', color: '#991B1B' },
+  adultCardSubEmergency: { fontSize: 13, color: '#B91C1C', marginTop: 4 }
 });

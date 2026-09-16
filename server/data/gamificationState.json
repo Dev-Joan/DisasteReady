@@ -100,5 +100,30 @@
     "longestStreak": 1,
     "lastActiveDate": "2026-09-16",
     "dailyTasksCompleted": []
+  },
+  {
+    "userId": "u_1789555763175",
+    "points": 0,
+    "rank": "Novice",
+    "badges": [],
+    "currentStreak": 1,
+    "longestStreak": 1,
+    "lastActiveDate": "2026-09-16",
+    "dailyTasksCompleted": []
+  },
+  {
+    "userId": "u_1789559046390",
+    "points": 10,
+    "rank": "Novice",
+    "badges": [],
+    "currentStreak": 1,
+    "longestStreak": 1,
+    "lastActiveDate": "2026-09-16",
+    "dailyTasksCompleted": [
+      {
+        "taskId": "t1",
+        "date": "2026-09-16"
+      }
+    ]
   }
 ]

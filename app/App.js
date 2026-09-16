@@ -19,6 +19,8 @@ import ResourceHubScreen from './screens/ResourceHubScreen';
 import AudioPlayerScreen from './screens/AudioPlayerScreen';
 import LearningPathScreen from './screens/LearningPathScreen';
 import LessonScreen from './screens/LessonScreen';
+import FirstAidScreen from './screens/FirstAidScreen';
+import FirstAidGuideScreen from './screens/FirstAidGuideScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +46,8 @@ export default function App() {
             <Stack.Screen name="AudioPlayer" component={AudioPlayerScreen} options={{ title: 'Listen & Learn' }} />
             <Stack.Screen name="LearningPath" component={LearningPathScreen} options={{ title: 'Learning Path' }} />
             <Stack.Screen name="Lesson" component={LessonScreen} options={{ title: 'Lesson' }} />
+            <Stack.Screen name="FirstAid" component={FirstAidScreen} options={{ title: 'First Aid' }} />
+            <Stack.Screen name="FirstAidGuide" component={FirstAidGuideScreen} options={{ title: 'Guide' }} />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
