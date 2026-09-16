@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated, Dimensions } from 'react-native';
 import { useAudioPlayer } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
 import apiRequest from '../services/api';
@@ -16,6 +16,55 @@ const CORAL = '#FF6B6B';
 const SLATE = '#0F172A';
 const CARD = '#1E293B';
 const ERROR = '#EF4444';
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const CONFETTI_COLORS = [TEAL, INDIGO, CORAL, '#FBBF24', '#34D399'];
+
+function Confetti() {
+  const pieces = useRef(
+    Array.from({ length: 28 }).map(() => ({
+      x: Math.random() * SCREEN_WIDTH,
+      delay: Math.random() * 250,
+      duration: 1700 + Math.random() * 900,
+      spin: 180 + Math.random() * 540,
+      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+      w: 6 + Math.random() * 6,
+      h: 10 + Math.random() * 8,
+      anim: new Animated.Value(0)
+    }))
+  ).current;
+
+  useEffect(() => {
+    Animated.stagger(15, pieces.map((p) =>
+      Animated.timing(p.anim, { toValue: 1, duration: p.duration, delay: p.delay, useNativeDriver: true })
+    )).start();
+  }, []);
+
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      {pieces.map((p, i) => {
+        const translateY = p.anim.interpolate({ inputRange: [0, 1], outputRange: [-20, 760] });
+        const rotate = p.anim.interpolate({ inputRange: [0, 1], outputRange: ['0deg', `${p.spin}deg`] });
+        const opacity = p.anim.interpolate({ inputRange: [0, 0.85, 1], outputRange: [1, 1, 0] });
+        return (
+          <Animated.View
+            key={i}
+            style={{
+              position: 'absolute',
+              left: p.x,
+              top: 0,
+              width: p.w,
+              height: p.h,
+              backgroundColor: p.color,
+              borderRadius: 2,
+              opacity,
+              transform: [{ translateY }, { rotate }]
+            }}
+          />
+        );
+      })}
+    </View>
+  );
+}
 
 export default function LessonScreen({ route, navigation }) {
   const { userId } = useUser();
@@ -30,7 +79,7 @@ export default function LessonScreen({ route, navigation }) {
   const [checked, setChecked] = useState(false);
   const [wasCorrect, setWasCorrect] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [phase, setPhase] = useState('playing'); // playing | done | failed
+  const [phase, setPhase] = useState('intro'); // intro | playing | done | failed
 
   const heartShake = useRef(new Animated.Value(0)).current;
   const feedbackY = useRef(new Animated.Value(200)).current;
@@ -104,7 +153,7 @@ export default function LessonScreen({ route, navigation }) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       setPhase('done');
       try {
-        await apiRequest('/gamification/lesson-complete', 'POST', { userId, lessonId });
+        await apiRequest('/gamification/lesson-complete', 'POST', { userId, lessonId, xp: lesson.xp });
       } catch (err) {
         console.log('Lesson complete error:', err.message);
       }
@@ -130,11 +179,46 @@ export default function LessonScreen({ route, navigation }) {
     });
   };
 
+  // ---- INTRO / TEACHING ----
+  if (phase === 'intro') {
+    return (
+      <ScrollView style={styles.screen} contentContainerStyle={styles.introBody}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ alignSelf: 'flex-start' }}>
+          <Text style={styles.closeBtn}>✕</Text>
+        </TouchableOpacity>
+        <Text style={styles.introEmoji}>{lesson.emoji}</Text>
+        <Text style={styles.introTitle}>{lesson.title}</Text>
+
+        <View style={[styles.introSection, { borderLeftColor: '#94A3B8' }]}>
+          <Text style={[styles.introLabel, { color: '#CBD5E1' }]}>WHAT IT IS</Text>
+          <Text style={styles.introText}>{lesson.intro.what}</Text>
+        </View>
+        <View style={[styles.introSection, { borderLeftColor: TEAL }]}>
+          <Text style={[styles.introLabel, { color: TEAL }]}>HOW TO PREPARE</Text>
+          <Text style={styles.introText}>{lesson.intro.prepare}</Text>
+        </View>
+        <View style={[styles.introSection, { borderLeftColor: INDIGO }]}>
+          <Text style={[styles.introLabel, { color: INDIGO }]}>HOW TO REACT</Text>
+          <Text style={styles.introText}>{lesson.intro.react}</Text>
+        </View>
+        <View style={[styles.introSection, { borderLeftColor: CORAL }]}>
+          <Text style={[styles.introLabel, { color: CORAL }]}>PROTECT YOURSELF</Text>
+          <Text style={styles.introText}>{lesson.intro.protect}</Text>
+        </View>
+
+        <TouchableOpacity style={styles.primaryBtn} onPress={() => setPhase('playing')}>
+          <Text style={styles.primaryBtnText}>START LESSON ▶</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  }
+
   // ---- COMPLETION ----
   if (phase === 'done') {
     const accuracy = Math.round((correctCount / exercises.length) * 100);
     return (
       <View style={styles.completeScreen}>
+        <Confetti />
         <Text style={styles.completeEmoji}>⚡🎉</Text>
         <Text style={styles.completeTitle}>Lesson Complete!</Text>
         <View style={styles.statsRow}>
@@ -288,6 +372,13 @@ const styles = StyleSheet.create({
 
   body: { padding: 24, paddingBottom: 140 },
   prompt: { color: '#F8FAFC', fontSize: 22, fontWeight: 'bold', marginBottom: 24, lineHeight: 30 },
+
+  introBody: { padding: 24, paddingBottom: 48, alignItems: 'center' },
+  introEmoji: { fontSize: 56, marginTop: 12, marginBottom: 8 },
+  introTitle: { color: '#F8FAFC', fontSize: 26, fontWeight: 'bold', marginBottom: 24, textAlign: 'center' },
+  introSection: { width: '100%', backgroundColor: CARD, borderRadius: 14, borderLeftWidth: 4, borderLeftColor: TEAL, padding: 16, marginBottom: 14 },
+  introLabel: { color: TEAL, fontSize: 12, fontWeight: 'bold', letterSpacing: 1, marginBottom: 8 },
+  introText: { color: '#E2E8F0', fontSize: 15, lineHeight: 22 },
 
   option: { backgroundColor: CARD, borderRadius: 14, borderWidth: 2, borderColor: '#334155', borderBottomWidth: 5, padding: 16, marginBottom: 12 },
   optionSelected: { borderColor: TEAL, backgroundColor: '#12344a' },

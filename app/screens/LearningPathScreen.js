@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { useFocusEffect } from '@react-navigation/native';
 import apiRequest from '../services/api';
 import { useUser } from '../context/UserContext';
-import { LESSONS } from '../constants/lessons';
+import { TEEN_LESSONS as LESSONS } from '../constants/lessonSchema';
 
 export default function LearningPathScreen({ navigation }) {
   const { userId } = useUser();

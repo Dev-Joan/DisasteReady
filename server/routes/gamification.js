@@ -86,7 +86,7 @@ router.get('/lessons', (req, res) => {
 });
 
 router.post('/lesson-complete', (req, res) => {
-  const { userId, lessonId } = req.body;
+  const { userId, lessonId, xp } = req.body;
   if (!userId || !lessonId) return res.status(400).json({ error: 'userId and lessonId are required' });
 
   const allState = loadState();
@@ -100,7 +100,8 @@ router.post('/lesson-complete', (req, res) => {
 
   let result = userState;
   if (!alreadyDone) {
-    result = gamificationEngine.awardPoints(userId, 20);
+    const awarded = Number.isFinite(xp) && xp > 0 ? xp : 20;
+    result = gamificationEngine.awardPoints(userId, awarded);
   }
   res.status(200).json({ ...result, completedLessons: userState.completedLessons, alreadyDone });
 });
