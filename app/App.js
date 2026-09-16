@@ -21,6 +21,8 @@ import LearningPathScreen from './screens/LearningPathScreen';
 import LessonScreen from './screens/LessonScreen';
 import FirstAidScreen from './screens/FirstAidScreen';
 import FirstAidGuideScreen from './screens/FirstAidGuideScreen';
+import ArticleReaderScreen from './screens/ArticleReaderScreen';
+import SeniorArticleReaderScreen from './screens/SeniorArticleReaderScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +50,8 @@ export default function App() {
             <Stack.Screen name="Lesson" component={LessonScreen} options={{ title: 'Lesson' }} />
             <Stack.Screen name="FirstAid" component={FirstAidScreen} options={{ title: 'First Aid' }} />
             <Stack.Screen name="FirstAidGuide" component={FirstAidGuideScreen} options={{ title: 'Guide' }} />
+            <Stack.Screen name="ArticleReader" component={ArticleReaderScreen} options={{ title: 'Article' }} />
+            <Stack.Screen name="SeniorArticleReader" component={SeniorArticleReaderScreen} options={{ title: 'Article', headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
