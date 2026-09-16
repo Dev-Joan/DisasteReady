@@ -1,4 +1,4 @@
-const BASE_URL = 'http://10.0.0.12:3000';
+const BASE_URL = 'http://10.0.0.10:3000';
 
 async function apiRequest(endpoint, method = 'GET', body = null) {
   const options = {

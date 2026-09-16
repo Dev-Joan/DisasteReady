@@ -142,5 +142,26 @@
       "largerTouchTargets": false,
       "simplifiedNavigation": false
     }
+  },
+  {
+    "userId": "u_1789554924514",
+    "username": "jeanne.tannouss@gmail.com",
+    "password": "$2a$10$eUEE1cXHMtXyx9IwjVWrXOgS/NEr9zrC.gEXKd7/w8Lofk0OzZXyi",
+    "name": "Jeanne",
+    "age": 6,
+    "region": "MEA",
+    "country": "Lebanon",
+    "accessibilityFlags": [],
+    "experienceMode": "child",
+    "relevantHazards": [
+      "earthquake",
+      "flood",
+      "wildfire"
+    ],
+    "accessibilitySettings": {
+      "screenReaderOptimised": false,
+      "largerTouchTargets": false,
+      "simplifiedNavigation": false
+    }
   }
 ]
